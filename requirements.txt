@@ -1,0 +1,12 @@
+flask
+flask-sqlalchemy
+flask-migrate
+flask-login
+flask-wtf
+flask-reuploads
+flask-bcrypt
+wtforms
+wtforms-sqlalchemy
+Werkzeug==0.16.1
+flask_bcrypt
+email-validator

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{viewing_user.name}}'s Profile</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    {% include 'navbar.html' %}
+    <div class="container">
+        {% for message in get_flashed_messages() %}
+            <div class="alert alert-warning" role="alert">
+                {{ message }}
+            </div>
+        {% endfor %}
+        <h2> {{viewing_user.name}}</h2>
+    
+        <div style="margin-top: 15px; width: 100%;">
+            <h3> {{viewing_user.name}}'s Reviews </h3>
+            {% if reviews_count == 0%}
+                <h4> This user hasn't made any reviews yet. </h4>
+            {% else %}
+                {% for review in reviews %}
+                        <div class="border border-success p-2 mb-2" style="width: 100%;">
+                            <h5> For: <a href="{{url_for('movies_view', id = review.reviewed_movie.id)}}"> {{review.reviewed_movie.name}} </a> </h5>
+                            <img src="../../{{ review.reviewed_movie.photo }}" style="padding-right: 20px; width: 200px; height: 200px;"></td>
+                            <h5> Review: {{review.description}} </h5>
+                            <h5> Rating: {{review.rating}} / 10 </h5>
+                            <a href="{{url_for('reviews_view', id = review.id)}}"> 
+                                <h6>View</h6>
+                            </a>
+                        </div>
+                    
+                {% endfor %}
+            {% endif %}
+        </div>
+        <h3> {{viewing_user.name}}'s Lists </h3>
+        <table>
+            <tr>
+                <th> </th>
+                <th>Name</th>
+            </tr>
+            {% for list in lists %}
+            <tr>
+                <td></td>
+                <td> <a href="{{url_for('lists_view', id = list.id)}}"> {{ list.name}} </a> </td>
+            </tr>
+            </a>
+            {% endfor %}
+        </table>
+    </div>
+    
+</body>
+</html>

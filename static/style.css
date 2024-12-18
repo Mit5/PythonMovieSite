@@ -1,0 +1,48 @@
+th,td{
+    border: 1px solid black;
+}
+
+table{
+    width: 100%;
+    counter-reset: rowNumber;
+}
+  
+table tr:not(:first-child) {
+    counter-increment: rowNumber;
+}
+
+table tr td:first-child::before {
+    content: counter(rowNumber);
+    min-width: 1em;
+    margin-right: 0.5em;
+}
+
+.container{
+    max-width: 600px;
+    margin:0 auto;
+    padding: 50px;
+    box-shadow: rgba(100,100,111,0.2) 0px 7px 29px 0px;
+}
+.form-group{
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.form-label{
+    width: 100px;
+    margin: auto;
+}
+
+.new-movie{
+    margin-top: 15px;
+    margin-bottom: 15px;
+    text-align: right;
+}
+
+.user-profile{
+    text-align: right;
+}
+
+.review{
+    border: 1px solid black;
+}

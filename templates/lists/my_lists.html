@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Lists</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    {% include 'navbar.html' %}
+    <div class="container">
+        {% for message in get_flashed_messages() %}
+            <div class="alert alert-warning" role="alert">
+                {{ message }}
+            </div>
+        {% endfor %}
+        <h2> Lists </h2>
+        <div class="new-movie">
+            <a href="{{url_for('lists_create')}}" class="btn btn-success rounded-circle new-movie"> + </a>
+        </div>
+        <table>
+            <tr>
+                <th> </th>
+                <th>Name</th>
+            </tr>
+            {% for list in lists %}
+            <tr>
+                <td></td>
+                <td> <a href="{{url_for('lists_view', id = list.id)}}"> {{ list.name}} </a> </td>
+                <td> <a href="{{url_for('lists_delete', id = list.id )}}"  onclick="return confirm('Are you sure you want to delete this list?')" class="btn btn-danger"> Delete List </a></td>
+            </tr>
+            </a>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>

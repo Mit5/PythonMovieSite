@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Movie</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    {% include 'navbar.html' %}
+    <div class="container">
+        {% for message in get_flashed_messages() %}
+            <div class="alert alert-warning" role="alert">
+                {{ message }}
+            </div>
+        {% endfor %}
+        <h1> Edit Movie</h1>
+
+        <form method="post" method="get" enctype="multipart/form-data">
+            {{ form.hidden_tag() }}
+            <div class="form-group">
+                <label class="form-label"> Name:</label>
+                {{ form.name(class_='form-control') }}
+            </div> 
+            <div class="form-group">
+                <label class="form-label"> Description:</label>
+                {{ form.description(class_='form-control') }}
+            </div>
+            <div class="form-group">
+                <label class="form-label"> Duration:</label>
+                {{ form.duration(class_='form-control') }}
+            </div>
+            <div class="form-group">
+                <label class="form-label"> Director:</label>
+                {{ form.director(class_='form-control') }}
+            </div>
+            <div class="form-group">
+                <label class="form-label"> Current Photo:</label>
+                <img src="../../{{ movie.photo }}" class="form-control" style=" padding-right: 20px; width: 300px; height: 500px;">
+                <label class="form-label"> New Photo:</label>
+                {{ form.photo(class_='form-control') }}
+            </div>
+            <br>
+            <div class="form-btn" class="btn btn-primary">
+                {{ form.submit(class_='btn btn-primary') }}
+            </div>
+        </form>
+    </div>
+</html>
